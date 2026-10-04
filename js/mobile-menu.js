@@ -1,7 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile_menu');
     const responsiveMenu = document.getElementById('responsive-menu');
-    
+    const siteHeader = document.querySelector('.site-header');
+
+    // Anchor the menu directly beneath the fixed header instead of a hardcoded offset
+    const syncMenuTop = function() {
+        responsiveMenu.style.top = siteHeader.offsetHeight + 'px';
+    };
+    syncMenuTop();
+    window.addEventListener('resize', syncMenuTop);
+
     // Toggle menu when clicking the menu button
     mobileMenuButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -10,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close menu when clicking menu items
     const menuItems = responsiveMenu.getElementsByTagName('a');
-    for(let item of menuItems) {
+    for (let item of menuItems) {
         item.addEventListener('click', function() {
             responsiveMenu.classList.remove('open');
         });

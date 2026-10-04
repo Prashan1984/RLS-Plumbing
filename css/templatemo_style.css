@@ -789,10 +789,24 @@ a#mobile_menu:hover {
     display: block;
     position: fixed;
     top: 60px;
+    bottom: 0;
     left: 0;
+    right: auto;
     width: 100%;
+    height: auto;
     background: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  }
+
+  #responsive-menu.open {
+    right: auto;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   #responsive-menu ul {
