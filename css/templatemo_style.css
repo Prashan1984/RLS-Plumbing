@@ -886,3 +886,29 @@ a#mobile_menu:hover {
     margin-bottom: 30px;
   }
 }
+
+/* Contact Form */
+.hidden-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-status {
+  margin: 5px 0 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: transparent;
+}
+
+.form-status-success {
+  color: #4caf50;
+}
+
+.form-status-error {
+  color: #e64c3c;
+}
+

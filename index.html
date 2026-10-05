@@ -204,23 +204,30 @@
                </div> <!-- .col-md-5 -->
                <div class="col-md-7">
                     <div class="row">
-                        <form class="contact-form" action="#" method="post">
-                           <fieldset class="col-md-6">
-                               <input type="text" name="name" placeholder="Name...">
-                           </fieldset>
-                           <fieldset class="col-md-6">
-                               <input type="email" name="email" placeholder="Email...">
-                           </fieldset>
-                           <fieldset class="col-md-12">
-                               <input type="text" name="subject" placeholder="Subject...">
-                           </fieldset>
-                           <fieldset class="col-md-12">
-                               <textarea name="message" id="message" cols="30" rows="5" placeholder="Message..."></textarea>
-                           </fieldset>
-                           <fieldset class="col-md-12">
-                               <input type="submit" value="Send Message" class="main-button">
-                           </fieldset>
-                        </form>
+                         <form class="contact-form" name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" id="contact-form">
+                            <input type="hidden" name="form-name" value="contact">
+                            <p class="hidden-field">
+                                <label>Do not fill this out if you are human: <input name="bot-field"></label>
+                            </p>
+                            <fieldset class="col-md-6">
+                                <input type="text" name="name" placeholder="Name..." required>
+                            </fieldset>
+                            <fieldset class="col-md-6">
+                                <input type="email" name="email" placeholder="Email..." required>
+                            </fieldset>
+                            <fieldset class="col-md-12">
+                                <input type="text" name="subject" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12">
+                                <textarea name="message" id="message" cols="30" rows="5" placeholder="Message..." required></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12">
+                                <input type="submit" value="Send Message" class="main-button">
+                            </fieldset>
+                            <fieldset class="col-md-12">
+                                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                            </fieldset>
+                         </form>
                     </div> <!-- .row -->
                </div> <!-- .col-md-8 -->
             </div> <!-- .row -->
@@ -243,5 +250,37 @@
     <script src="js/vendor/jquery-1.10.1.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/mobile-menu.js"></script>
+    <script>
+    (function() {
+        var form = document.getElementById('contact-form');
+        if (!form) { return; }
+        var status = document.getElementById('form-status');
+        var submit = form.querySelector('input[type="submit"]');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            status.className = 'form-status';
+            status.textContent = 'Sending your message...';
+            submit.disabled = true;
+
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+            }).then(function(res) {
+                if (!res.ok) { throw new Error('Request failed'); }
+                form.reset();
+                status.className = 'form-status form-status-success';
+                status.textContent = 'Thank you! Your message has been sent. We will be in touch shortly.';
+            }).catch(function() {
+                status.className = 'form-status form-status-error';
+                status.textContent = 'Sorry, something went wrong. Please email us directly or call +27 76 752 7707.';
+            }).then(function() {
+                submit.disabled = false;
+            });
+        });
+    })();
+    </script>
+
 </body>
 </html>
