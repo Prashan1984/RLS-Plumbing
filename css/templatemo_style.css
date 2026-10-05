@@ -263,6 +263,13 @@ input.main-button,
 .site-header .logo {
   margin-top: 42px;
 }
+.site-header .logo a {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 .site-header.scrolled {
   background: #0d1f2a;
 }
@@ -365,11 +372,11 @@ a#mobile_menu {
   font-size: 24px;
   background-color: #39c8e2;
   color: #ffffff;
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   display: block;
   text-align: center;
-  line-height: 45px;
+  line-height: 48px;
   position: fixed;
   top: 15px;
   right: 15px;
@@ -405,8 +412,8 @@ a#mobile_menu:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
+    width: 44px;
+    height: 44px;
     background: #39c8e2;
     border-radius: 50%;
     color: white;
@@ -749,7 +756,8 @@ a#mobile_menu:hover {
   }
   .top-c .topc-img {
     margin-top: 60px;
-    margin-left: 70px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .top-c h3.topc-title {
     margin-top: 60px;
