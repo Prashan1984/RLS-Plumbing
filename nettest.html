@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>Netlify form detection test</title></head>
+<head><meta charset="utf-8"><title>Netlify form isolation matrix</title></head>
 <body>
-    <h1>Netlify form detection test</h1>
 
-    <form name="nettest" netlify>
-      <p>
-        <label>Name <input type="text" name="name" /></label>
-      </p>
-      <p>
-        <label>Email <input type="email" name="email" /></label>
-      </p>
-      <p>
-        <button type="submit">Send</button>
-      </p>
-    </form>
+<!-- A: exact reproduction of the contact form -->
+<form name="nettest_a" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+  <p class="hidden-field"><label>Do not fill this out if you are human: <input name="bot-field"></label></p>
+  <fieldset class="col-md-6"><input type="text" name="name" placeholder="Name..." required></fieldset>
+  <fieldset class="col-md-6"><input type="email" name="email" placeholder="Email..." required></fieldset>
+  <fieldset class="col-md-12"><input type="text" name="subject" placeholder="Subject..."></fieldset>
+  <fieldset class="col-md-12"><textarea name="message" cols="30" rows="5" placeholder="Message..." required></textarea></fieldset>
+  <fieldset class="col-md-12"><input type="submit" value="Send" class="main-button"></fieldset>
+</form>
+
+<!-- B: contact form minus the action attribute -->
+<form name="nettest_b" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <p class="hidden-field"><label>Do not fill this out if you are human: <input name="bot-field"></label></p>
+  <fieldset class="col-md-6"><input type="text" name="name" required></fieldset>
+  <fieldset class="col-md-12"><textarea name="message" required></textarea></fieldset>
+</form>
+
+<!-- C: contact form minus the honeypot -->
+<form name="nettest_c" method="POST" action="/thanks.html" data-netlify="true">
+  <fieldset class="col-md-6"><input type="text" name="name" required></fieldset>
+  <fieldset class="col-md-12"><textarea name="message" required></textarea></fieldset>
+</form>
+
+<!-- D: bare netlify attribute, action and honeypot kept -->
+<form name="nettest_d" method="POST" action="/thanks.html" netlify netlify-honeypot="bot-field">
+  <p class="hidden-field"><label>Do not fill this out if you are human: <input name="bot-field"></label></p>
+  <fieldset class="col-md-6"><input type="text" name="name" required></fieldset>
+  <fieldset class="col-md-12"><textarea name="message" required></textarea></fieldset>
+</form>
+
+<!-- E: data-netlify with fieldset structure, no action, no honeypot -->
+<form name="nettest_e" method="POST" data-netlify="true">
+  <fieldset class="col-md-6"><input type="text" name="name" required></fieldset>
+  <fieldset class="col-md-12"><textarea name="message" required></textarea></fieldset>
+</form>
+
 </body>
 </html>
