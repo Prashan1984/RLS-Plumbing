@@ -195,13 +195,14 @@
                 </div>
             </div>
             <div class="row">
-               <div class="col-md-5 contact-info">
-                   <p>PLease enter your name and email address <br><br>How can we help you?</p>
-                   <ul>
-                       <li><i class="fa fa-phone"></i> <a href="tel:+27767527707">+27 76 752 7707</a></li>
-                       <li><i class="fa fa-map-marker"></i> 50 Alcantara Crescent Wesbank Kuils River 7580 </li>
-                   </ul>
-               </div> <!-- .col-md-5 -->
+                <div class="col-md-5 contact-info">
+                    <p>Please enter your name and email address <br><br>How can we help you?</p>
+                    <ul>
+                        <li><i class="fa fa-phone"></i> <a href="tel:+27767527707">+27 76 752 7707</a></li>
+                        <li><i class="fa fa-envelope-o"></i> <a href="mailto:adamsrowallen@gmail.com">adamsrowallen@gmail.com</a></li>
+                        <li><i class="fa fa-map-marker"></i> 50 Alcantara Crescent Wesbank Kuils River 7580 </li>
+                    </ul>
+                </div> <!-- .col-md-5 -->
                <div class="col-md-7">
                     <div class="row">
                          <form class="contact-form" name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" id="contact-form">
@@ -274,7 +275,7 @@
                 status.textContent = 'Thank you! Your message has been sent. We will be in touch shortly.';
             }).catch(function() {
                 status.className = 'form-status form-status-error';
-                status.textContent = 'Sorry, something went wrong. Please email us directly or call +27 76 752 7707.';
+                status.textContent = 'Sorry, something went wrong. Please email us at adamsrowallen@gmail.com or call +27 76 752 7707.';
             }).then(function() {
                 submit.disabled = false;
             });
